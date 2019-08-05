@@ -1,0 +1,13 @@
+{
+  "name": "create-gem-app",
+  "version": "0.0.1",
+  "description": "quickly create gem app",
+  "type": "module",
+  "bin": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
