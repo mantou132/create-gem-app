@@ -1,6 +1,10 @@
 ## create gem app
 
-1. git clone
-2. rename dir
-3. remove .git
-4. update package.json
+```bash
+npm i -g create-gem-app
+
+# create gem app
+create-gem-app <app-name>
+# or
+npm init gem-app <app-name>
+```
