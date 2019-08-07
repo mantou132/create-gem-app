@@ -1,5 +1,6 @@
 ## create gem app
 
 1. git clone
-2. remove .git
-3. rename
+2. rename dir
+3. remove .git
+4. update package.json
