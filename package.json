@@ -1,6 +1,6 @@
 {
   "name": "create-gem-app",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "quickly create gem app",
   "type": "module",
   "bin": "index.js",

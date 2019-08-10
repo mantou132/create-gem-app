@@ -21,12 +21,12 @@ if (shell.exec(`git clone https://github.com/mantou132/gem-boilerplate ${APP_NAM
   shell.exit(1);
 }
 
-shell.cd(APP_NAME);
+shell.cd(APP_NAME); // process.cwd()
 
 shell.rm('-rf', '.git');
 shell.exec('npm i');
 
-import(`./${APP_NAME}/package.json`).then(async ({default: pkg}) => {
+import(`${process.cwd()}/package.json`).then(async ({default: pkg}) => {
   const data = Object.assign(pkg, {
     name: APP_NAME,
     description: '',
