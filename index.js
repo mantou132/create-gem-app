@@ -4,6 +4,11 @@ import shell from 'shelljs';
 import fs from 'fs';
 import path from 'path';
 
+process.on('unhandledRejection', err => {
+  console.log(err);
+  shell.exit(1);
+});
+
 if (!shell.which('git')) {
   shell.echo('Sorry, this script requires git');
   shell.exit(1);
@@ -37,13 +42,10 @@ import(`${process.cwd()}/package.json`).then(async ({default: pkg}) => {
     author: shell.exec('git config user.name', { silent: true }).stdout.trim(),
   })
   await fs.promises.writeFile(path.resolve('package.json'), JSON.stringify(data, null, 2));
-
+}).then(() => {
   shell.exec('git init');
   shell.exec('git add .');
   shell.exec('git commit -a -m "init"')
 
-  shell.echo('Complete!');
-}).catch(err => {
-  console.log(err)
-  throw err
-})
+  shell.echo('Complete!, Use `npm start` start development');
+});
