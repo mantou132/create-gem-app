@@ -36,7 +36,12 @@ import(`${process.cwd()}/package.json`).then(async ({default: pkg}) => {
     keywords: undefined,
     author: shell.exec('git config user.name', { silent: true }).stdout.trim(),
   })
-  await fs.promises.writeFile(path.resolve('package.json'), JSON.stringify(data, null, 2))
+  await fs.promises.writeFile(path.resolve('package.json'), JSON.stringify(data, null, 2));
+
+  shell.exec('git init');
+  shell.exec('git add .');
+  shell.exec('git commit -a -m "init"')
+
   shell.echo('Complete!');
 }).catch(err => {
   console.log(err)
