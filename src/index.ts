@@ -6,6 +6,7 @@ import path from 'path';
 import shell from 'shelljs';
 import program from 'commander';
 import colors from 'colors';
+import lodash from 'lodash';
 
 import templates from './lib/templates';
 import { getGitCloneCommand, getGitUrl } from './lib/utils';
@@ -73,7 +74,7 @@ shell.cd(appName);
   import(`${process.cwd()}/package.json`)
     .then(async ({ default: pkg }) => {
       const data = Object.assign(pkg, {
-        name: appName,
+        name: lodash.kebabCase(appName),
         description: '',
         repository: undefined,
         bugs: undefined,
@@ -82,6 +83,9 @@ shell.cd(appName);
         author: shell.exec('git config user.name', { silent: true }).stdout.trim(),
       });
       await fs.promises.writeFile(path.resolve('package.json'), JSON.stringify(data, null, 2));
+    })
+    .catch(() => {
+      // package.json does not exist
     })
     .then(() => {
       shell.exec('git init');
