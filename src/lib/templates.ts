@@ -11,6 +11,7 @@ export interface Template {
 export default {
   gem: { repo: 'gem-boilerplate', comment: 'Default. web gem app' },
   lib: { repo: 'gem-lib-boilerplate', comment: 'web gem library' },
+  wasm: { repo: 'gem-lib-boilerplate', branch: 'wasm', comment: 'web gem library with wasm' },
   react: { repo: 'react-boilerplate', comment: 'web react app' },
   game2d: { repo: 'gem-lib-boilerplate', branch: 'game2d', comment: 'web 2d game' },
   game3d: { repo: 'gem-lib-boilerplate', branch: 'game3d', comment: 'web 3d game' },
