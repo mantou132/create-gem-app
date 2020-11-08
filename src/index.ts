@@ -11,7 +11,7 @@ import lodash from 'lodash';
 import templates from './lib/templates';
 import { getGitCloneCommand, getGitUrl } from './lib/utils';
 
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   console.error(colors.red(String(err)));
   shell.exit(1);
 });
@@ -38,7 +38,7 @@ let template = templates.gem;
 
 program
   .arguments('<name>')
-  .action(name => {
+  .action((name) => {
     appName = name;
   })
   .option('-t, --template <name>', 'specify template');
