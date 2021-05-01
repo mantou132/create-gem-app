@@ -92,6 +92,8 @@ shell.cd(appName);
       shell.exec('git add .');
       shell.exec('git commit -a -m "init"');
 
-      console.log(colors.green('Complete!, Use `npm start` start development'));
+      console.log(colors.green(`Complete!`));
+      console.log(colors.green(`Project location: ${path.resolve(appName)}`));
+      console.log(colors.green(`Complete!, Use \`code ${appName}\` start development`));
     });
 }
