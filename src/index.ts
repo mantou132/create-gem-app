@@ -69,7 +69,12 @@ if (shell.exec(`${getGitCloneCommand(template)} ${appName}`).code !== 0) {
 shell.cd(appName);
 {
   shell.rm('-rf', '.git');
-  shell.exec('npm i');
+
+  if (fs.existsSync(`${process.cwd()}/yarn.lock`)) {
+    shell.exec('yarn');
+  } else {
+    shell.exec('npm i');
+  }
 
   import(`${process.cwd()}/package.json`)
     .then(async ({ default: pkg }) => {
