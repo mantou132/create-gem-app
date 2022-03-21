@@ -76,29 +76,25 @@ shell.cd(appName);
     shell.exec('npm i');
   }
 
-  import(`${process.cwd()}/package.json`)
-    .then(async ({ default: pkg }) => {
-      const data = Object.assign(pkg, {
-        name: lodash.kebabCase(appName),
-        description: '',
-        repository: undefined,
-        bugs: undefined,
-        homepage: undefined,
-        keywords: undefined,
-        author: shell.exec('git config user.name', { silent: true }).stdout.trim(),
-      });
-      await fs.promises.writeFile(path.resolve('package.json'), JSON.stringify(data, null, 2));
-    })
-    .catch(() => {
-      // package.json does not exist
-    })
-    .then(() => {
-      shell.exec('git init');
-      shell.exec('git add .');
-      shell.exec('git commit -a -m "init"');
+  const pkgPath = path.resolve(process.cwd(), templates[program.template].dir || '', 'package.json');
 
-      console.log(colors.green(`Complete!`));
-      console.log(colors.green(`Project location: ${path.resolve(appName)}`));
-      console.log(colors.green(`Complete!, Use \`code ${appName}\` start development`));
-    });
+  const pkg = require(pkgPath);
+
+  const data = Object.assign(pkg, {
+    name: lodash.kebabCase(appName),
+    description: '',
+    repository: undefined,
+    bugs: undefined,
+    homepage: undefined,
+    keywords: undefined,
+    author: shell.exec('git config user.name', { silent: true }).stdout.trim(),
+  });
+  fs.writeFileSync(pkgPath, JSON.stringify(data, null, 2));
+  shell.exec('git init');
+  shell.exec('git add .');
+  shell.exec('git commit -a -m "init"');
+
+  console.log(colors.green(`Complete!`));
+  console.log(colors.green(`Project location: ${path.resolve(appName)}`));
+  console.log(colors.green(`Complete!, Use \`code ${appName}\` start development`));
 }

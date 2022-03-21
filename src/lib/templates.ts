@@ -5,6 +5,7 @@ export interface Template {
   user?: string;
   branch?: string;
   comment?: string;
+  dir?: string;
   repo: string;
 }
 
@@ -21,4 +22,5 @@ export default {
   express: { repo: 'node-boilerplate', branch: 'express', comment: 'node express app' },
   neon: { repo: 'node-boilerplate', branch: 'neon', comment: 'node rust native modules' },
   vscode: { repo: 'node-boilerplate', branch: 'vscode', comment: 'vscode extension' },
+  monorepo: { repo: 'monorepo-boilerplate', branch: 'main', dir: 'packages/example', comment: 'monorepo' },
 } as { [key: string]: Template };
