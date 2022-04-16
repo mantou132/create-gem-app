@@ -76,7 +76,7 @@ shell.cd(appName);
     shell.exec('npm i');
   }
 
-  const pkgPath = path.resolve(process.cwd(), templates[program.template].dir || '', 'package.json');
+  const pkgPath = path.resolve(process.cwd(), template.dir || '', 'package.json');
 
   const pkg = require(pkgPath);
 
